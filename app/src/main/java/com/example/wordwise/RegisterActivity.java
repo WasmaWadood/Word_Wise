@@ -17,6 +17,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText etRegEmail, etRegPassword, etRegConfirmPassword;
     private Button btnRegister;
     private TextView tvBackToLogin;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
         etRegConfirmPassword = findViewById(R.id.etRegConfirmPassword);
         btnRegister          = findViewById(R.id.btnRegister);
         tvBackToLogin        = findViewById(R.id.tvBackToLogin);
+
+        databaseHelper = new DatabaseHelper(this);
 
         btnRegister.setOnClickListener(v -> validateAndRegister());
 
@@ -78,11 +81,20 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+        if (databaseHelper.checkEmail(email)) {
+            Toast.makeText(this, "User already exists! Please login.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        // TODO: Add Firebase or API registration here
-        // On success navigate to Login:
-        // startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-        // finish();
+        boolean isinserted = databaseHelper.registerUser(email, password);
+        if (isinserted) {
+            Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show();
+            // Navigate to LoginActivity
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Registration failed! Please try again.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -15,11 +15,14 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail, etPassword;
     private Button btnLogin;
     private TextView tvRegister;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        databaseHelper = new DatabaseHelper(this);
 
         // Link Java to XML
         etEmail    = findViewById(R.id.etEmail);
@@ -68,12 +71,18 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // All validations passed
-        Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show();
+        // Verify credentials with database
+        if (databaseHelper.checkUser(email, password)) {
+            // Login success
+            Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
 
-        // TODO: Add real authentication here (Firebase, API, etc.)
-        // On success navigate to MainActivity:
-        // startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        // finish();
+            // Navigate to MainActivity
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            // Login failed
+            Toast.makeText(this, "Invalid Email or Password", Toast.LENGTH_SHORT).show();
+        }
     }
 }

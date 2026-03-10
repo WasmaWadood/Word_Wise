@@ -26,6 +26,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
 
         TextView txtWord, txtMeaning, txtStatus;
         Button btnLearned;
+        android.widget.ImageButton btnDelete;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -34,6 +35,15 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
             txtMeaning = itemView.findViewById(R.id.txtMeaning);
             txtStatus = itemView.findViewById(R.id.txtStatus);
             btnLearned = itemView.findViewById(R.id.btnLearned);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
+        }
+    }
+
+    public void swapCursor(Cursor newCursor) {
+        if (cursor != null) cursor.close();
+        cursor = newCursor;
+        if (newCursor != null) {
+            notifyDataSetChanged();
         }
     }
 
@@ -61,13 +71,26 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.ViewHolder> {
 
             if(learned == 1){
                 holder.txtStatus.setText("Status: Learned ✓");
+                holder.btnLearned.setEnabled(false);
+                holder.btnLearned.setText("Learned");
             }
             else{
                 holder.txtStatus.setText("Status: Not Learned");
+                holder.btnLearned.setEnabled(true);
+                holder.btnLearned.setText("Mark as Learned");
             }
 
             holder.btnLearned.setOnClickListener(v ->{
                 databaseHelper.markAsLearned(id);
+                // Ideally refresh the cursor from the activity, but here we can just update the UI optimistically
+                holder.txtStatus.setText("Status: Learned ✓");
+                holder.btnLearned.setEnabled(false);
+                holder.btnLearned.setText("Learned");
+            });
+
+            holder.btnDelete.setOnClickListener(v -> {
+                databaseHelper.deleteWord(id);
+                swapCursor(databaseHelper.getAllWords());
             });
         }
     }
