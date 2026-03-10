@@ -1,3 +1,4 @@
+//Authentication screens
 package com.example.wordwise;
 
 import android.content.Intent;
