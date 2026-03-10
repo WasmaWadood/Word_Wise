@@ -25,7 +25,7 @@ The system utilizes an intuitive user interface and a local SQLite database to p
 | :--- | :--- | :--- | :--- |
 | 5694 | ICT/2022/090 | Abdul Wadood Wasma | **Authentication & Security:** User Registration, Login System, and Authentication using SQLite |
 | 5695 | ICT/2022/092 | MNFN. Rihani | **Database & vocabulary management:** SQLite integration, saving and retrieving vocabulary data |
-| 5696 | ICT/2022/093 | A.K.A. Sanjula (Ashan) | **Flash Card & Practice:** App Design, XML Layouts, Flashcard Animation & Progress Logic |
+| 5696 | ICT/2022/093 | A.K.A. Sanjula | **Flash Card & Practice:** App Design, XML Layouts, Flashcard Animation & Progress Logic |
 
 ---
 📘 *This project is submitted in partial fulfillment of the requirements for the Mobile Application Development module.*
