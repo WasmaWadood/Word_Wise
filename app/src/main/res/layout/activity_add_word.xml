@@ -25,7 +25,7 @@
         android:layout_marginBottom="40dp"/>
 
     <EditText
-        android:id="@+id/etWord"
+        android:id="@+id/etEnglishWord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
@@ -35,7 +35,7 @@
         android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:id="@+id/etMeaning"
+        android:id="@+id/etSinhalaMeaning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
