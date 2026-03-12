@@ -19,6 +19,21 @@ The system utilizes an intuitive user interface and a local SQLite database to p
 * **IDE:** Android Studio
 * **Version Control:** Git & GitHub
 
+## 📱 App Screenshots
+
+<div align="center">
+  <img src="screenshots/login.jpeg" height="420" />
+  <img src="screenshots/register.jpeg" height="420" />
+  <img src="screenshots/home.jpeg" height="420" />
+  <img src="screenshots/add_word.jpeg" height="420" />
+</div>
+<br>
+<div align="center">
+  <img src="screenshots/flashcard.jpeg" height="420" />
+  <img src="screenshots/progress.jpeg" height="420" />
+  <img src="screenshots/show_words.jpeg" height="420" />
+</div>
+
 ## 👥 Team Member Details
 
 | Index No | Registration No | Name | Role & Responsibilities |
